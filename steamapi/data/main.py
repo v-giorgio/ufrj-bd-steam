@@ -1,20 +1,24 @@
 import pandas as pd
 
-from utils import get_user_details, get_user_friends, pre_process_users_df
+from utils import get_user_details, get_user_friends, pre_process_users_df, get_user_games, get_games_details
 
 # 1) pegar dados do usuário default
 USER_DEFAULT = "76561197960435530"
 df_users = get_user_details(USER_DEFAULT)
 
 # 2) pegar dados de 19 amigos do usuario e fazer pré-processamento
-df_friends = get_user_friends(USER_DEFAULT)
+df_friends_temp = get_user_friends(USER_DEFAULT)
+df_users = pre_process_users_df(pd.concat([df_users, df_friends_temp], ignore_index=True))
 
-df_users = pre_process_users_df(pd.concat([df_users, df_friends], ignore_index=True))
-print(df_users.to_string(index=False))
+del df_friends_temp
 
 # 3) pegar 20 appIds de jogos mais jogados por cada um dos 20 usuários registrados
+df_users_games = get_user_games(df_users['id'].to_list())
 
 # 4) pegar os detalhes dos jogos obtidos e reunir em um unico df (join com os appids de 3)) - somente trazer quando success === true
+app_ids = df_users_games.drop_duplicates(subset='appid')['appid'].to_list()
+
+df_games = get_games_details(app_ids)
 
 # 5) para cada imagem de cada jogo, criar um df para imagens com o appId do jogo
 
