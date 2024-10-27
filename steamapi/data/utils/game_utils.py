@@ -1,3 +1,4 @@
+from typing import Tuple
 import pandas as pd
 import requests
 
@@ -45,3 +46,56 @@ def get_games_details(app_ids: list) -> pd.DataFrame:
             df_games = pd.concat([df_games, df_game], ignore_index=True)
             
     return df_games
+
+def generate_images_videos_categories_dataframes(df_games: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+    images_data = []
+    image_id = 1
+
+    videos_data = []
+    video_id = 1
+
+    categories_data = []
+    
+    for index, row in df_games.iterrows():
+        app_id = row['id']
+        
+        images_data.append({
+            'id': image_id,
+            'appId': app_id,
+            'url': row['capa'],
+            'capa': True
+        })
+        image_id += 1
+        
+        for img_url in row['imagens']:
+            images_data.append({
+                'id': image_id,
+                'appId': app_id,
+                'url': img_url,
+                'capa': False
+            })
+            image_id += 1
+
+        for video in row['videos']:
+            videos_data.append({
+                'id': video_id,
+                'appId': app_id,
+                'url': video['url'],
+                'nome': video['nome']
+            })
+            video_id += 1
+
+        for category in row['categorias']:
+            categories_data.append({
+                'id': category['id'],
+                'nome': category['nome']
+            })
+            
+    df_images = pd.DataFrame(images_data)
+
+    df_videos = pd.DataFrame(videos_data)
+
+    df_categories = pd.DataFrame(categories_data)
+    df_categories = df_categories.drop_duplicates(subset=['id', 'nome']).reset_index(drop=True)
+    
+    return df_images, df_videos, df_categories

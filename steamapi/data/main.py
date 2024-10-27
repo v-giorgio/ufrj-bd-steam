@@ -1,6 +1,15 @@
 import pandas as pd
 
-from utils import get_user_details, get_user_friends, pre_process_users_df, get_user_games, get_games_details
+from utils import (
+    get_user_details, 
+    get_user_friends, 
+    pre_process_users_df, 
+    get_user_games, 
+    get_games_details, 
+    generate_images_videos_categories_dataframes, 
+    get_game_achievements,
+    get_achievements_by_user
+)
 
 # 1) pegar dados do usuário default
 USER_DEFAULT = "76561197960435530"
@@ -20,14 +29,15 @@ app_ids = df_users_games.drop_duplicates(subset='appid')['appid'].to_list()
 
 df_games = get_games_details(app_ids)
 
-# 5) para cada imagem de cada jogo, criar um df para imagens com o appId do jogo
-
-# 6) para cada video de cada jogo, criar um df para imagens com o appId do jogo
-
-# 7) para cada categoria não repetida, criar um df de categorias
+# 5) Criar df para imagens, videos e categorias
+df_images, df_videos, df_categories = generate_images_videos_categories_dataframes(df_games)
 
 # 8) buscar conquistas de um jogo e adicionar a um df
+df_game_achievements = get_game_achievements(app_ids)
 
 # 9) buscar conquistas de um usuario e adicionar a um df (somente quando achieved === 1)
+achievements_app_ids = df_game_achievements.drop_duplicates(subset='appid')['appid'].to_list()
+user_ids = df_users['id'].to_list()
+df_user_achievements = get_achievements_by_user(user_ids, achievements_app_ids)
 
-# 10) criar um novo df a partir de 9) com um join em 8) (mas manter o 8)), contendo steamid do usuario, appid do jogo e nane do jogo
+del achievements_app_ids, user_ids
