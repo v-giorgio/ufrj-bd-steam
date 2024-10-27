@@ -83,5 +83,7 @@ def get_user_games(users_ids: list) -> pd.DataFrame:
             user_games['steamid'] = user_id
 
             df_users_games = pd.concat([df_users_games, user_games], ignore_index=True)
-
+    
+    df_users_games = df_users_games.loc[:, ['appid', 'tempo_jogado', 'steamid']]
+    
     return df_users_games

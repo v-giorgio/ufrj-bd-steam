@@ -47,7 +47,7 @@ def get_games_details(app_ids: list) -> pd.DataFrame:
             
     return df_games
 
-def generate_images_videos_categories_dataframes(df_games: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+def generate_images_videos_categories_dataframes(df_games: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame]:
     images_data = []
     image_id = 1
 
@@ -55,6 +55,8 @@ def generate_images_videos_categories_dataframes(df_games: pd.DataFrame) -> Tupl
     video_id = 1
 
     categories_data = []
+
+    categories_games_data = []
     
     for index, row in df_games.iterrows():
         app_id = row['id']
@@ -90,6 +92,11 @@ def generate_images_videos_categories_dataframes(df_games: pd.DataFrame) -> Tupl
                 'id': category['id'],
                 'nome': category['nome']
             })
+
+            categories_games_data.append({
+                'categoria_id': category['id'],
+                'jogo_id': app_id
+            })
             
     df_images = pd.DataFrame(images_data)
 
@@ -97,5 +104,7 @@ def generate_images_videos_categories_dataframes(df_games: pd.DataFrame) -> Tupl
 
     df_categories = pd.DataFrame(categories_data)
     df_categories = df_categories.drop_duplicates(subset=['id', 'nome']).reset_index(drop=True)
+
+    df_categories_games = pd.DataFrame(categories_games_data)
     
-    return df_images, df_videos, df_categories
+    return df_images, df_videos, df_categories, df_categories_games

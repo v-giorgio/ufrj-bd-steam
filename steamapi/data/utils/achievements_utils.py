@@ -31,9 +31,10 @@ def get_achievements_by_user(user_ids: list, achievements_app_ids: list) -> pd.D
     
     for app_id in achievements_app_ids:
         for steam_id in user_ids:
-            response = requests.get(f"{GAME_ACHIEVEMENTS}{steam_id}".replace("APP_ID", str(app_id)))
-            user_achievements_data = response.json()
+            response = requests.get(f"{USER_ACHIEVEMENTS}{steam_id}".replace("APP_ID", str(app_id)))
             
+            user_achievements_data = response.json()
+             
             if response.status_code == 200 and len(user_achievements_data['playerstats']['achievements']) > 0 and user_achievements_data['playerstats']['success']:
                 user_achievements_data = user_achievements_data['playerstats']['achievements']
 
