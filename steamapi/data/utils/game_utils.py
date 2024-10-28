@@ -1,3 +1,4 @@
+from datetime import datetime
 from typing import Tuple
 import pandas as pd
 import requests
@@ -25,7 +26,7 @@ def get_games_details(app_ids: list) -> pd.DataFrame:
                 'desenvolvedora': game_data['developers'][0] if game_data.get('developers') else "",
                 'editora': game_data['publishers'][0] if game_data.get('publishers') else "",
                 'classificacao_etaria': game_data.get('required_age', ""),
-                'data_lancamento': game_data['release_date']['date'] if 'release_date' in game_data else "",
+                'data_lancamento': parse_date(game_data.get('release_date', {}).get('date', "")),
                 'gratuidade': game_data.get('is_free', False),
                 'capa': game_data.get('header_image', ""),
                 'imagens': [img['path_full'] for img in game_data.get('screenshots', [])],
@@ -106,5 +107,15 @@ def generate_images_videos_categories_dataframes(df_games: pd.DataFrame) -> Tupl
     df_categories = df_categories.drop_duplicates(subset=['id', 'nome']).reset_index(drop=True)
 
     df_categories_games = pd.DataFrame(categories_games_data)
+    df_categories_games.drop_duplicates(subset=['categoria_id', 'jogo_id'], inplace=True)
     
     return df_images, df_videos, df_categories, df_categories_games
+
+def parse_date(date_str: str) -> str:
+    try:
+        return datetime.strptime(date_str, "%d %b, %Y").strftime("%Y-%m-%d")
+    except ValueError:
+        try:
+            return datetime.strptime(date_str, "%b %d, %Y").strftime("%Y-%m-%d")
+        except ValueError:
+            return ""

@@ -1,85 +1,86 @@
--- PRIMEIRA VERSAO; FALTAM AJUSTES
-
--- criar a base e usá-la:
 CREATE DATABASE IF NOT EXISTS steam;
+
 USE steam;
 
--- criar as tabelas:
 CREATE TABLE Jogo (
-    id INTEGER PRIMARY KEY,
-    descricao VARCHAR(256),
-    nome VARCHAR(64)
-    spec_minima VARCHAR(256),
-    spec_recomendada VARCHAR(256),
-    genero VARCHAR(16),
-    desenvolvedora VARCHAR(64),
-    editora VARCHAR(64),
+    id BIGINT PRIMARY KEY,
+    spec_recomendada TEXT,
+    genero VARCHAR(256),
+    desenvolvedora VARCHAR(256),
+    editora VARCHAR(256),
     classificacao_etaria INTEGER,
     data_lancamento DATE,
     gratuidade BOOLEAN,
+    descricao TEXT,
+    spec_minima TEXT,
+    nome VARCHAR(256)
 );
 
 CREATE TABLE Categoria (
     id INTEGER PRIMARY KEY,
-    nome VARCHAR(32)
+    nome VARCHAR(64)
 );
 
 CREATE TABLE Imagem (
-    id INTEGER PRIMARY KEY,
+    id INTEGER,
     capa BOOLEAN,
-    fk_Jogo_id INTEGER,
-    url VARCHAR(256)
+    fk_Jogo_id BIGINT,
+    url VARCHAR(256),
+    PRIMARY KEY (id, fk_Jogo_id)
 );
 
 CREATE TABLE Video (
-    id INTEGER PRIMARY KEY,
+    id INTEGER,
     nome VARCHAR(256),
     url VARCHAR(256),
-    fk_Jogo_id INTEGER
+    fk_Jogo_id BIGINT,
+    PRIMARY KEY (id, fk_Jogo_id)
 );
 
 CREATE TABLE Conquista (
-    id INTEGER PRIMARY KEY,
-    percentual_obtencao_usuarios NUMERIC,
-    fk_Jogo_id INTEGER
+    id VARCHAR(512),
+    percentual_obtencao_usuarios DECIMAL,
+    fk_Jogo_id BIGINT,
+    PRIMARY KEY (id, fk_Jogo_id)
 );
 
 CREATE TABLE Usuario (
-    id INTEGER PRIMARY KEY,
-    apelido VARCHAR(64),
-    nome VARCHAR(128),
+    id BIGINT PRIMARY KEY,
+    apelido VARCHAR(256),
+    nome VARCHAR(256),
     url_perfil VARCHAR(256),
     pais_origem VARCHAR(32),
     avatar VARCHAR(256)
 );
 
 CREATE TABLE JogoUsuario (
-    fk_Usuario_id INTEGER,
+    fk_Usuario_id BIGINT,
     tempo_jogado NUMERIC,
-    fk_Jogo_id INTEGER,
+    fk_Jogo_id BIGINT,
     PRIMARY KEY (fk_Jogo_id, fk_Usuario_id)
 );
 
 CREATE TABLE JogoCategoria (
     fk_Categoria_id INTEGER,
-    fk_Jogo_id INTEGER,
+    fk_Jogo_id BIGINT,
     PRIMARY KEY (fk_Jogo_id, fk_Categoria_id)
 );
 
 CREATE TABLE UsuarioConquista (
-    fk_Usuario_id INTEGER,
-    fk_Conquista_id INTEGER,
+    fk_Usuario_id BIGINT,
+    fk_Conquista_id VARCHAR(512),
     PRIMARY KEY (fk_Conquista_id, fk_Usuario_id)
 );
  
--- criar as constraints de chave estrangeira:
 ALTER TABLE Imagem ADD CONSTRAINT FK_Imagem_1
     FOREIGN KEY (fk_Jogo_id)
-    REFERENCES Jogo (id);
+    REFERENCES Jogo (id)
+    ON DELETE CASCADE;
  
 ALTER TABLE Video ADD CONSTRAINT FK_Video_1
     FOREIGN KEY (fk_Jogo_id)
-    REFERENCES Jogo (id);
+    REFERENCES Jogo (id)
+    ON DELETE CASCADE;
  
 ALTER TABLE Conquista ADD CONSTRAINT FK_Conquista_1
     FOREIGN KEY (fk_Jogo_id)
@@ -116,5 +117,6 @@ ALTER TABLE UsuarioConquista ADD CONSTRAINT FK_UsuarioConquista_2
     ON DELETE RESTRICT;
 
 -- dar permissão ao usuário `steam_user` para acessar a base `steam`:
+CREATE USER IF NOT EXISTS 'steam_user'@'%' IDENTIFIED BY '123';
 GRANT ALL PRIVILEGES ON steam.* TO 'steam_user'@'%';
 FLUSH PRIVILEGES;

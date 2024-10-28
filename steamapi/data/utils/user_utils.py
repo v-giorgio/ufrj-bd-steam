@@ -63,6 +63,7 @@ def pre_process_users_df(df: pd.DataFrame) -> pd.DataFrame:
     )
 
     df.drop('realname', axis=1, inplace=True)
+    df.drop('username', axis=1, inplace=True)
 
     df['apelido'] = df['url_perfil'].str.extract(r'/id/([^/]+)/?$')
 

@@ -23,6 +23,8 @@ def get_game_achievements(app_ids: list) -> pd.DataFrame:
                 }]).fillna("")
 
                 df_games_achievements = pd.concat([df_games_achievements, df_achievement], ignore_index=True)
+    
+    df_games_achievements = df_games_achievements[df_games_achievements['appid'].isin(app_ids)]
             
     return df_games_achievements
 
@@ -46,5 +48,7 @@ def get_achievements_by_user(user_ids: list, achievements_app_ids: list) -> pd.D
                         }]).fillna("")
 
                         df_users_achievements = pd.concat([df_users_achievements, df_achievement], ignore_index=True)
-            
+
+    df_users_achievements.drop_duplicates(subset=['usuario_id', 'conquista_id'], inplace=True)
+
     return df_users_achievements
