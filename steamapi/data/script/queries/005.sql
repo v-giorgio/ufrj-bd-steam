@@ -3,8 +3,9 @@
 - (i) mais de uma junção
 - (ii) agregação com agrupamento
 */
-SELECT 
-    U.apelido AS usuario,
+SELECT
+    U.nome as usuario_nome,
+    U.apelido AS usuario_apelido,
     C.nome AS categoria,
     COUNT(*) AS quantidade_de_vezes_jogado
 FROM 
@@ -18,7 +19,7 @@ JOIN
 JOIN 
     Categoria C ON JC.fk_Categoria_id = C.id
 WHERE 
-    U.id = '76561198128399931' 
+    U.id = '76561198098109169' 
 GROUP BY 
     C.nome
 ORDER BY 
