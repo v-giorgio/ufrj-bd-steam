@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: steam
+  datasource:
+    url: jdbc:mysql://bd-ufrj-1.cf2cuyuks3ic.sa-east-1.rds.amazonaws.com:3306/steam
+    username: admin
+    password: # adicionar senha aqui
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    initialization-mode: always
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: validate
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+server:
+  servlet:
+    context-path: /api/v1
