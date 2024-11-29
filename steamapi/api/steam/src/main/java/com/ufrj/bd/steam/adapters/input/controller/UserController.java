@@ -5,6 +5,7 @@ import com.ufrj.bd.steam.adapters.input.dto.UserProfileDTO;
 import com.ufrj.bd.steam.application.ports.input.GetAllGamesByUserService;
 import com.ufrj.bd.steam.application.ports.input.GetAllUsersService;
 import com.ufrj.bd.steam.application.ports.input.GetUserProfileService;
+import com.ufrj.bd.steam.domain.exception.UserNotFoundException;
 import com.ufrj.bd.steam.domain.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -40,7 +41,7 @@ public class UserController {
             return ResponseEntity.ok(getAllUsersService.execute());
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.internalServerError().build();
         }
     }
 
@@ -48,9 +49,12 @@ public class UserController {
     public ResponseEntity<UserProfileDTO> getUserProfileById(@PathVariable Long userId) {
         try {
             return ResponseEntity.ok(getUserProfileService.execute(userId));
-        } catch (RuntimeException e) {
+        } catch (UserNotFoundException e) {
             System.out.println(e.getMessage());
             return ResponseEntity.notFound().build();
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+            return ResponseEntity.internalServerError().build();
         }
     }
 
@@ -60,7 +64,7 @@ public class UserController {
             return ResponseEntity.ok(getAllGamesByUserService.execute(userId));
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.internalServerError().build();
         }
     }
 }

@@ -1,8 +1,8 @@
 package com.ufrj.bd.steam.application.service;
 
 import com.ufrj.bd.steam.adapters.input.dto.UserProfileDTO;
-import com.ufrj.bd.steam.adapters.output.persistence.projection.TimePlayedByCategoryProjection;
-import com.ufrj.bd.steam.adapters.output.persistence.projection.UserProfileProjection;
+import com.ufrj.bd.steam.adapters.output.persistence.projections.TimePlayedByCategoryProjection;
+import com.ufrj.bd.steam.adapters.output.persistence.projections.UserProfileProjection;
 import com.ufrj.bd.steam.adapters.output.persistence.repository.CategoryRepository;
 import com.ufrj.bd.steam.adapters.output.persistence.repository.UserRepository;
 import com.ufrj.bd.steam.application.ports.input.GetUserProfileService;

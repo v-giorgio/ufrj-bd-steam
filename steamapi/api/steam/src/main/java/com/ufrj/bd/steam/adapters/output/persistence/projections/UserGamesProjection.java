@@ -1,4 +1,4 @@
-package com.ufrj.bd.steam.adapters.output.persistence.projection;
+package com.ufrj.bd.steam.adapters.output.persistence.projections;
 
 import java.math.BigDecimal;
 

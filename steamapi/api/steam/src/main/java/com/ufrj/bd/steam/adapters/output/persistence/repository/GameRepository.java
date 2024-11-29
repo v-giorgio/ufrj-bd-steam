@@ -1,7 +1,8 @@
 package com.ufrj.bd.steam.adapters.output.persistence.repository;
 
 import com.ufrj.bd.steam.adapters.output.persistence.entities.GameEntity;
-import com.ufrj.bd.steam.adapters.output.persistence.projection.UserGamesProjection;
+import com.ufrj.bd.steam.adapters.output.persistence.projections.GameBasicDetailsProjection;
+import com.ufrj.bd.steam.adapters.output.persistence.projections.UserGamesProjection;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -30,6 +31,14 @@ public interface GameRepository extends JpaRepository<GameEntity, Long> {
             "WHERE JU.user.id = :userId " +
             "ORDER BY playedTime DESC, obtainedAchievementsNumber DESC")
     List<UserGamesProjection> findGamesByUser(Long userId);
+
+    @Query("SELECT " +
+            "j.id AS id, " +
+            "j.name AS gameName, " +
+            "i.url AS headerImageUrl " +
+            "FROM GameEntity j " +
+            "LEFT JOIN ImageEntity i ON i.game.id = j.id AND i.isHeader = true ")
+    List<GameBasicDetailsProjection> findAllGames();
 
 }
 
