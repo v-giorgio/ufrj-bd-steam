@@ -1,20 +1,31 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 
-import Header from './layouts/header/Header';
-import Footer from './layouts/footer/Footer';
+
+
+import Layout from './layouts/Layout'; // Import the Layout component
 import Main from './pages/Main/Main';
+import UserList from './pages/UserList/UserList';
+
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <Header />
-    <Main />
-    <Footer />
+    <Router>
+      <Routes>
+        {/* O componente de Layout encapsula todas as rotas */}
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Main />} />
+          <Route path="/userList" element={<UserList />} /> About component
+          {/* ADICIONAR ROTAS DAS OUTRAS PÁGINAS AQUI */}
+        </Route>
+      </Routes>
+    </Router>
   </React.StrictMode>
 );
 
