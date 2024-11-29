@@ -1,6 +1,8 @@
 package com.ufrj.bd.steam.adapters.input.controller;
 
+import com.ufrj.bd.steam.adapters.input.dto.UserGamesDTO;
 import com.ufrj.bd.steam.adapters.input.dto.UserProfileDTO;
+import com.ufrj.bd.steam.application.ports.input.GetAllGamesByUserService;
 import com.ufrj.bd.steam.application.ports.input.GetAllUsersService;
 import com.ufrj.bd.steam.application.ports.input.GetUserProfileService;
 import com.ufrj.bd.steam.domain.models.User;
@@ -19,14 +21,17 @@ public class UserController {
 
     private final GetUserProfileService getUserProfileService;
     private final GetAllUsersService getAllUsersService;
+    private final GetAllGamesByUserService getAllGamesByUserService;
 
     @Autowired
     public UserController(
             GetUserProfileService getUserProfileService,
-            GetAllUsersService getAllUsersService
+            GetAllUsersService getAllUsersService,
+            GetAllGamesByUserService getAllGamesByUserService
     ) {
         this.getUserProfileService = getUserProfileService;
         this.getAllUsersService = getAllUsersService;
+        this.getAllGamesByUserService = getAllGamesByUserService;
     }
 
     @GetMapping
@@ -43,6 +48,16 @@ public class UserController {
     public ResponseEntity<UserProfileDTO> getUserProfileById(@PathVariable Long userId) {
         try {
             return ResponseEntity.ok(getUserProfileService.execute(userId));
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/id/{userId}/games")
+    public ResponseEntity<UserGamesDTO> getUserGames(@PathVariable Long userId) {
+        try {
+            return ResponseEntity.ok(getAllGamesByUserService.execute(userId));
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
             return ResponseEntity.notFound().build();
