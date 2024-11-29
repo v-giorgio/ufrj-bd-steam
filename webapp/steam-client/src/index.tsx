@@ -1,12 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 import Header from './layouts/header/Header';
 import Footer from './layouts/footer/Footer';
-import Main from './pages/Main';
+import Main from './pages/Main/Main';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
