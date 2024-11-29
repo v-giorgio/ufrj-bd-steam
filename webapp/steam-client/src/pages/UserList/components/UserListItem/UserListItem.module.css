@@ -1,0 +1,47 @@
+
+.mainContainer{
+
+    /* DEBUG */
+    /* border: 1px solid pink; */
+    /* ----- */
+    
+    background-color: #121822;
+    width: 100%;
+    margin: 15px 0 15px 0;
+    display: flex;
+    padding: 20px;
+    transition: transform 0.1s ease;
+}
+
+.mainContainer:hover {
+    transform: scale(1.05);
+}
+
+.avatar {
+    width: 64px;
+    height: auto;
+    margin-right: 20px;
+}
+
+.infoContainer {
+    height: fit-content;
+}
+
+.userName{
+    color: white;
+    font-size: 1.8em;
+    
+}
+
+.userCountry {
+    color: white;
+    display: flex;
+    align-items: center;
+
+}
+
+.userCountry img {
+    width: 32px;
+    height: auto;
+    margin: 0 10px 0 0;
+}

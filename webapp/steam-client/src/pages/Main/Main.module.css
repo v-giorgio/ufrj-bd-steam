@@ -11,9 +11,8 @@
     /* height: 300px; */
     /* border: red 1px solid; */
     /* display: flex; */
-
-    /* Pra valer */
-    background-color: #212838;
+    /* --- */
+    
     width: 1600px; 
     height: auto;                       /*The height adjusts automatically based on the content inside*/
     margin-top: 100px;
