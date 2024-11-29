@@ -8,30 +8,43 @@
 .mainContainer {
 
     /* Debug  */
-    height: 300px;
-    border: red 1px solid;
-    display: flex;
-    margin-bottom: 800px; /*Só pra forçar o corpo a ocupar espaço da tela.*/
+    /* height: 300px; */
+    /* border: red 1px solid; */
+    /* display: flex; */
 
     /* Pra valer */
     background-color: #212838;
-    width: 90%;  /* Makes the div take up 100% of the width of its parent (the screen or container) */
-    height: auto; /* The height adjusts automatically based on the content inside */
+    width: 1600px; 
+    height: auto;                       /*The height adjusts automatically based on the content inside*/
     margin-top: 100px;
+    margin-bottom: 100px;
     display: flex;
-    flex-direction: column;  /* Stacks the items vertically */
+    flex-direction: column;             /* Stacks the items vertically */
 }
 
 .title {
     color: white;
     font-size: 2.5em;
-    margin: 0;
+    margin: 0 0 30px 0;
 }
 
-.lineThree {
-
+.imageContainer {
+    display: flex;
+    justify-content: space-between;     /* Adjust spacing between images if needed */
+    align-items: center;                /* Aligns images vertically in case of varying heights */
+    flex-wrap: wrap;
 }
 
-.lineFour {
+.imageContainer img {
+    flex: 1 1 auto;                     /*Make images flexible*/
+    max-width: 100%;                    /* Prevent images from overflowing */
+    height: auto;                       /* Maintain aspect ratio */
+    transition: transform 0.1s ease;
+    margin: 20px 30px 20px 30px;
+    object-fit: contain;
+    width: 1px;                         /*Isso aqui fez as imagens encaixarem perfeitamente, não sei pq kkk*/
+}
 
+.imageContainer img:hover {
+    transform: scale(1.05);
 }
