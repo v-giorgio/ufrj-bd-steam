@@ -1,0 +1,26 @@
+.footer {
+    background-color: #000;
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+    max-width: 80%;
+    margin: 0 auto;
+  }
+  
+  .logo {
+    width: 120px;
+    max-width: 100%; /* Ensures the image doesn't overflow its container */
+    height: auto;    /* Maintains aspect ratio by adjusting height */
+    display: block;  /* Removes any unwanted inline spacing */
+  }
+
+  .copyrightsText {
+    margin: 15px;
+  }

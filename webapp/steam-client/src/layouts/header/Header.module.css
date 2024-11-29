@@ -2,7 +2,7 @@
     background-color: #000;
     color: white;
     padding: 10px 20px;
-    position: sticky;
+    position: relative;
     top: 0;
     z-index: 1000;
   }
