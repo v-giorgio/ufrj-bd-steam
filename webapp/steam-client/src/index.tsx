@@ -9,6 +9,7 @@ import reportWebVitals from './reportWebVitals';
 import Layout from './layouts/Layout'; // Import the Layout component
 import Main from './pages/Main/Main';
 import UserList from './pages/UserList/UserList';
+import Game from './pages/Game/Game';
 
 
 const root = ReactDOM.createRoot(
@@ -21,7 +22,8 @@ root.render(
         {/* O componente de Layout encapsula todas as rotas */}
         <Route path="/" element={<Layout />}>
           <Route index element={<Main />} />
-          <Route path="/userList" element={<UserList />} /> About component
+          <Route path="/userList" element={<UserList />} /> 
+          <Route path="/games" element={<Game />} /> 
           {/* ADICIONAR ROTAS DAS OUTRAS PÁGINAS AQUI */}
         </Route>
       </Routes>
