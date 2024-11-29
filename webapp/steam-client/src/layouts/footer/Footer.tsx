@@ -8,10 +8,10 @@ const Footer: React.FC = () => {
   return (
     <footer className={styles.footer}>
         <div className={styles.container}>
-        <a href="/">
+        <a href="https://www.valvesoftware.com/en/">
             <img className={styles.logo} src={valveLogo} />
         </a>
-        <a href="https://www.valvesoftware.com/en/">
+        <a href="/">
             <img className={styles.logo} src={steamLogo} />
         </a>
         <div className={styles.copyrightsText}>
