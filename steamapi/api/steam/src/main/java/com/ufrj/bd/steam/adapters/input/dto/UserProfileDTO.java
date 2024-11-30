@@ -2,17 +2,12 @@ package com.ufrj.bd.steam.adapters.input.dto;
 
 import com.ufrj.bd.steam.adapters.output.persistence.projections.TimePlayedByCategoryProjection;
 import com.ufrj.bd.steam.adapters.output.persistence.projections.UserProfileProjection;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Getter
-@Setter
-@NoArgsConstructor
+@Data
 @AllArgsConstructor
 public class UserProfileDTO {
 
@@ -26,9 +21,7 @@ public class UserProfileDTO {
 
     private List<TimePlayedByCategoryDTO> topCategories;
 
-    @Getter
-    @Setter
-    @NoArgsConstructor
+    @Data
     @AllArgsConstructor
     public static class TimePlayedByCategoryDTO {
 

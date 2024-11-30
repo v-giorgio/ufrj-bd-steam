@@ -1,15 +1,11 @@
 package com.ufrj.bd.steam.adapters.input.dto;
 import com.ufrj.bd.steam.adapters.output.persistence.projections.AchievementObtainedProjection;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.math.BigDecimal;
 
-@Getter
-@Setter
-@ToString
+@Data
 public class AchievementObtainedDTO {
     private String name;
     private Boolean obtained;

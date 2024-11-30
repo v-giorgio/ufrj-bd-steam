@@ -1,25 +1,18 @@
 package com.ufrj.bd.steam.adapters.input.dto;
 
 import com.ufrj.bd.steam.adapters.output.persistence.projections.UserGamesProjection;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.util.List;
 
-@Getter
-@Setter
-@NoArgsConstructor
+@Data
 @AllArgsConstructor
 public class UserGamesDTO {
 
     private List<GameDTO> games;
 
-    @Getter
-    @Setter
-    @NoArgsConstructor
+    @Data
     @AllArgsConstructor
     public static class GameDTO {
         private Long id;
