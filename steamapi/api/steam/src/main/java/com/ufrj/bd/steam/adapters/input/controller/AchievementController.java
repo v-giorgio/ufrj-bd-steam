@@ -24,19 +24,11 @@ public class AchievementController {
 
     @GetMapping("/user/{userId}/game/{gameId}")
     public ResponseEntity<List<AchievementObtainedDTO>> getByUserAndGame(@PathVariable Long userId, @PathVariable Long gameId) {
-        System.out.println("entrou");
-
         try {
             return ResponseEntity.ok(getAchievementByUserAndGameService.execute(userId, gameId));
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.internalServerError().build();
         }
-    }
-
-    @GetMapping
-    public String test() {
-        System.out.println("test");
-        return "test";
     }
 }

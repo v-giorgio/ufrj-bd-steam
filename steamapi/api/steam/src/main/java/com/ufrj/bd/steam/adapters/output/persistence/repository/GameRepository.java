@@ -13,6 +13,7 @@ import java.util.List;
 public interface GameRepository extends JpaRepository<GameEntity, Long> {
 
     @Query("SELECT " +
+            "J.id AS id, " +
             "J.name AS gameName, " +
             "JU.playtime AS playedTime, " +
             "(SELECT COUNT(C.id) " +

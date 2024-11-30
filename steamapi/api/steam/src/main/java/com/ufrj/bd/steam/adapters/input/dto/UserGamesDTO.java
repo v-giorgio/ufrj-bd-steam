@@ -22,6 +22,7 @@ public class UserGamesDTO {
     @NoArgsConstructor
     @AllArgsConstructor
     public static class GameDTO {
+        private Long id;
         private String gameName;
         private BigDecimal playedTime;
         private Long totalAchievementsNumber;
@@ -32,6 +33,7 @@ public class UserGamesDTO {
     public static UserGamesDTO toUserGamesDTO(List<UserGamesProjection> userGames) {
         List<GameDTO> gameDTOs = userGames.stream()
                 .map(game -> new GameDTO(
+                        game.getId(),
                         game.getGameName(),
                         game.getPlayedTime(),
                         game.getTotalAchievementsNumber(),
