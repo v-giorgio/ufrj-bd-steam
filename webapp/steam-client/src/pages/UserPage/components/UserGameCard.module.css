@@ -1,0 +1,60 @@
+a {
+    all: unset; /* Resets all styles for the element */
+    cursor: pointer;
+}
+
+.activityCard {
+    background-color: #121822;
+    display: flex;
+    padding: 10px;
+    margin-bottom: 10px;
+    transition: transform 0.1s ease;
+  }
+  .activityCard:hover {
+    transform: scale(1.05);
+  }
+
+  .gameImage {
+    
+    height: auto; 
+    width: auto; 
+    max-width: 300px; 
+
+    margin-right: 20px;
+  }
+  
+  .gameInfo {
+    
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .gameTitle {
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .hoursPlayed {
+    margin-bottom: 10px;
+    
+  }
+  
+  .achievement {
+    background-color: #868686;
+    
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+  
+  .progress {
+    margin-left: 20px;
+  }
+
+  .trophyIcon {
+    width: 20px;
+    height: 20px;
+  }

@@ -23,14 +23,16 @@
     margin-bottom: 80px;
     display: flex;
     flex-direction: column;                 /* Stacks the items vertically */
+    padding: 30px 50px 50px 50px;
 }
 
 .title {
     /* border: pink 1px solid; */
 
     color: white;
-    font-size: 2.5em;
+    font-size: 3em;
     margin: 0;
+    margin-bottom: 30px;
 }
 
 
@@ -39,6 +41,7 @@
 
     height:1500px;
     display: flex;
+    
 }
 
 .previewContainer {
@@ -49,6 +52,7 @@
     height: 100%;
     white-space: nowrap;
     overflow: hidden;
+    margin: 10px;
 }
 
 .currentMedia {
@@ -75,6 +79,7 @@
 
     display: flex;
     flex-direction: column;
+    margin: 10px;
 }
 
 .infoText {
@@ -88,7 +93,7 @@
 
 .requirementsContainer {
     display: flex;
-    border: white 1px solid;
+    /*border: white 1px solid;*/
     width: 100%;
     height: 700px;
     
@@ -115,7 +120,7 @@
 }
 
 .buyText {
-    border: black 1px solid;
+    /*border: black 1px solid;*/
 
     height: 100%;
     width: 60%;

@@ -59,12 +59,17 @@
   }
   
   .content {
+    
+
     display: flex;
     gap: 20px;
   }
   
   .recentActivity {
     flex: 3;
+    
+    background-color: #171D26;
+    padding: 0 30px;
   }
   
   .sectionTitle {
@@ -72,45 +77,6 @@
     margin-bottom: 10px;
   }
   
-  .activityCard {
-    background-color: #3B4252;
-    display: flex;
-    padding: 10px;
-    margin-bottom: 10px;
-  }
-  
-  .gameImage {
-    width: 150px;
-    height: 100px;
-    margin-right: 20px;
-  }
-  
-  .gameInfo {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  
-  .gameTitle {
-    font-size: 1.1em;
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-  
-  .hoursPlayed {
-    margin-bottom: 10px;
-  }
-  
-  .achievement {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  
-  .trophyIcon {
-    width: 20px;
-    height: 20px;
-  }
   
   .onlineStatus {
     flex: 1;
