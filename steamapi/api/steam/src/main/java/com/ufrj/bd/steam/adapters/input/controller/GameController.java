@@ -19,11 +19,6 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/games")
@@ -59,12 +54,20 @@ public class GameController {
 
 
     @GetMapping("/details/{gameId}")
+    @Operation(
+            summary = "Detalhes de um jogo",
+            description = "Obter detalhes do jogo desejado, junto com uma lista de suas categorias"
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Jogo e categorias recuperados com sucesso"),
+            @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
+    })
     public ResponseEntity<List<GameCategoriesDTO>> getByGameId(@PathVariable Long gameId) {
         try {
             return ResponseEntity.ok(getGamesAndCategoriesService.execute(gameId));
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.internalServerError().build();
         }
     }
 }
