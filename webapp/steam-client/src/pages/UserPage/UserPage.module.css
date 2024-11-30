@@ -1,0 +1,163 @@
+.body {
+    background-color: #212838;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    padding-bottom: 10vh;
+    padding-left: 10vw;
+    padding-right: 10vw;
+  }
+  
+  .profileContainer {
+    background-color: #2D374C;
+    width: 80%;
+    max-width: 1600px;
+    border-radius: 0px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    color: white;
+  }
+  
+  .header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .avatar {
+    width: 100px;
+    height: 100px;
+    margin-right: 20px;
+  }
+  
+  .userInfo {
+    flex-grow: 1;
+  }
+  
+  .username {
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+  
+  .fullName,
+  .location {
+    margin: 5px 0;
+  }
+  
+  .editButton {
+    background-color: #4F5B69;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .editButton:hover {
+    background-color: #3FA115;
+  }
+  
+  .content {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .recentActivity {
+    flex: 3;
+  }
+  
+  .sectionTitle {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+  }
+  
+  .activityCard {
+    background-color: #3B4252;
+    display: flex;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .gameImage {
+    width: 150px;
+    height: 100px;
+    margin-right: 20px;
+  }
+  
+  .gameInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .gameTitle {
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .hoursPlayed {
+    margin-bottom: 10px;
+  }
+  
+  .achievement {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .trophyIcon {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .onlineStatus {
+    flex: 1;
+    background-color: #3B4252;
+    border-radius: 5px;
+    padding: 10px;
+  }
+  
+  .friendList {
+    margin-top: 10px;
+  }
+  
+  .friendCard {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .friendAvatar {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+  }
+
+  .badgesSection {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 20px;
+  }
+  
+  .badgesTitle {
+    font-size: 1em;
+    color: #89CFFD;
+    margin-bottom: 10px;
+  }
+  
+  .badgesContainer {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .badgeIcon {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    background-color: #3B4252;
+    object-fit: cover;
+  }
+  

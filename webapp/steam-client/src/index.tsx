@@ -10,6 +10,7 @@ import Layout from './layouts/Layout'; // Import the Layout component
 import Main from './pages/Main/Main';
 import UserList from './pages/UserList/UserList';
 import Game from './pages/Game/Game';
+import UserPage from './pages/UserPage/UserPage';
 
 
 const root = ReactDOM.createRoot(
@@ -24,6 +25,7 @@ root.render(
           <Route index element={<Main />} />
           <Route path="/userList" element={<UserList />} /> 
           <Route path="/games" element={<Game />} /> 
+          <Route path="/userPage" element={<UserPage />} /> 
           {/* ADICIONAR ROTAS DAS OUTRAS PÁGINAS AQUI */}
         </Route>
       </Routes>

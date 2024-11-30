@@ -87,9 +87,20 @@
 }
 
 .requirementsContainer {
+    display: flex;
     border: white 1px solid;
     width: 100%;
     height: 700px;
+    
+}
+
+.requirementsText {
+    display: flex;
+    justify-content: center;        /* Centers horizontally */
+    align-items: center;
+    flex-direction: column;
+    font-size: 1.2em;
+    color: white;
 }
 
 .buyContainer {
@@ -141,3 +152,59 @@
     font-size: 2.2em;
     color: white;
 }
+
+.currentMedia {
+    background-color: black;
+    width: 100%;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.mediaLarge {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.media:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.carousel {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 10px;
+    scrollbar-width: thin;
+}
+
+.carousel::-webkit-scrollbar {
+    height: 8px;
+}
+
+.carousel::-webkit-scrollbar-thumb {
+    background-color: #4F5B69;
+    border-radius: 4px;
+}
+
+.carousel::-webkit-scrollbar-track {
+    background-color: #2D374C;
+}
+
+.media {
+    height: 130px;
+    width: auto;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.media:hover {
+    transform: scale(1.1);
+}
+
