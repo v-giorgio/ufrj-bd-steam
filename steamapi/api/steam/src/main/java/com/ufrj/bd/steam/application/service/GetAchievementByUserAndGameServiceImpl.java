@@ -23,6 +23,6 @@ public class GetAchievementByUserAndGameServiceImpl implements GetAchievementByU
 
     @Override
     public List<AchievementObtainedDTO> execute(Long userId, Long gameId) {
-        return achievementRepository.getAchivementObtainedByUserAndGame(userId, gameId).stream().map(AchievementObtainedDTO::new).collect(Collectors.toList());
+        return achievementRepository.getAchivementObtainedByUserAndGame(userId, gameId).stream().map(AchievementObtainedDTO::new).toList();
     }
 }
