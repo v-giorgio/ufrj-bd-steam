@@ -19,7 +19,7 @@ import com.ufrj.bd.steam.adapters.input.dto.AchievementObtainedDTO;
 import com.ufrj.bd.steam.application.ports.input.GetAchievementByUserAndGameService;
 
 @RestController
-@RequestMapping("/achievement")
+@RequestMapping("/achievements")
 public class AchievementController {
     private final GetAchievementByUserAndGameService getAchievementByUserAndGameService;
 

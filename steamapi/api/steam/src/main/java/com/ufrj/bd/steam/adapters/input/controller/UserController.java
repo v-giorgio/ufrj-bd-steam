@@ -2,11 +2,11 @@ package com.ufrj.bd.steam.adapters.input.controller;
 
 import com.ufrj.bd.steam.adapters.input.dto.UserGamesDTO;
 import com.ufrj.bd.steam.adapters.input.dto.UserProfileDTO;
+import com.ufrj.bd.steam.adapters.input.dto.UsersListDTO;
 import com.ufrj.bd.steam.application.ports.input.GetAllGamesByUserService;
 import com.ufrj.bd.steam.application.ports.input.GetAllUsersService;
 import com.ufrj.bd.steam.application.ports.input.GetUserProfileService;
 import com.ufrj.bd.steam.domain.exception.UserNotFoundException;
-import com.ufrj.bd.steam.domain.models.User;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -19,8 +19,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/users")
@@ -48,10 +46,10 @@ public class UserController {
     )
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Usuários recuperados com sucesso",
-                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = User.class))),
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = UsersListDTO.class))),
             @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
     })
-    public ResponseEntity<List<User>> getAll() {
+    public ResponseEntity<UsersListDTO> getAll() {
         try {
             return ResponseEntity.ok(getAllUsersService.execute());
         } catch (RuntimeException e) {
@@ -60,7 +58,7 @@ public class UserController {
         }
     }
 
-    @GetMapping("/id/{userId}")
+    @GetMapping("/{userId}")
     @Operation(
             summary = "Obter perfil de usuário por ID",
             description = "Recupera o perfil de um usuário específico através do ID"
@@ -85,7 +83,7 @@ public class UserController {
         }
     }
 
-    @GetMapping("/id/{userId}/games")
+    @GetMapping("/{userId}/games")
     @Operation(
             summary = "Obter jogos de um usuário por ID",
             description = "Recupera a lista de jogos de um usuário específico através do ID"
