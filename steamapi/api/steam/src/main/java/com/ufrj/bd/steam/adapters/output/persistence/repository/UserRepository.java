@@ -1,7 +1,7 @@
 package com.ufrj.bd.steam.adapters.output.persistence.repository;
 
 import com.ufrj.bd.steam.adapters.output.persistence.entities.UserEntity;
-import com.ufrj.bd.steam.adapters.output.persistence.projection.UserProfileProjection;
+import com.ufrj.bd.steam.adapters.output.persistence.projections.UserProfileProjection;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

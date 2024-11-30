@@ -1,8 +1,8 @@
 package com.ufrj.bd.steam.adapters.output.persistence.repository;
 
 import com.ufrj.bd.steam.adapters.output.persistence.entities.GameEntity;
-import com.ufrj.bd.steam.adapters.output.persistence.projection.UserGamesProjection;
-
+import com.ufrj.bd.steam.adapters.output.persistence.projections.GameBasicDetailsProjection;
+import com.ufrj.bd.steam.adapters.output.persistence.projections.UserGamesProjection;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -15,6 +15,7 @@ import com.ufrj.bd.steam.adapters.output.persistence.projection.GameAndCategorie
 public interface GameRepository extends JpaRepository<GameEntity, Long> {
 
     @Query("SELECT " +
+            "J.id AS id, " +
             "J.name AS gameName, " +
             "JU.playtime AS playedTime, " +
             "(SELECT COUNT(C.id) " +
@@ -42,8 +43,16 @@ public interface GameRepository extends JpaRepository<GameEntity, Long> {
     "J.descricao as description, " + 
     "J.nome as name, " + 
     "J.spec_minima as minimumSpec, " + 
-    "group_concat(c.nome separator ', ') as categories FROM Jogo J LEFT JOIN JogoCategoria jc ON J.id = jc.fk_Jogo_id LEFT JOIN Categoria c on c.id = jc.fk_Categoria_id WHERE J.id = :gameId", nativeQuery=true)
+    "group_concat(c.nome separator ', ') as categories FROM Jogo J LEFT JOIN JogoCategoria jc ON J.id = jc.fk_Jogo_id LEFT JOIN Categoria c on c.id = jc.fk_Categoria_id WHERE J.id = :gameId", nativeQuery = true)
     List<GameAndCategoriesProjection> findGamesAndCategories(Long gameId);
+
+    @Query("SELECT " +
+            "j.id AS id, " +
+            "j.name AS gameName, " +
+            "i.url AS headerImageUrl " +
+            "FROM GameEntity j " +
+            "LEFT JOIN ImageEntity i ON i.game.id = j.id AND i.isHeader = true ")
+    List<GameBasicDetailsProjection> findAllGames();
 }
 
 

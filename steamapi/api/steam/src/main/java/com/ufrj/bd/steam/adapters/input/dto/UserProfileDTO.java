@@ -1,7 +1,7 @@
 package com.ufrj.bd.steam.adapters.input.dto;
 
-import com.ufrj.bd.steam.adapters.output.persistence.projection.TimePlayedByCategoryProjection;
-import com.ufrj.bd.steam.adapters.output.persistence.projection.UserProfileProjection;
+import com.ufrj.bd.steam.adapters.output.persistence.projections.TimePlayedByCategoryProjection;
+import com.ufrj.bd.steam.adapters.output.persistence.projections.UserProfileProjection;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
