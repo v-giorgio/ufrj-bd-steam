@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import com.ufrj.bd.steam.adapters.output.persistence.entities.AchievementEntity;
-import com.ufrj.bd.steam.adapters.output.persistence.projections.AchievementObtainedProjection;
+import com.ufrj.bd.steam.adapters.output.persistence.projection.AchievementObtainedProjection;
 
 public interface AchievementRepository extends JpaRepository<AchievementEntity, String>{
     

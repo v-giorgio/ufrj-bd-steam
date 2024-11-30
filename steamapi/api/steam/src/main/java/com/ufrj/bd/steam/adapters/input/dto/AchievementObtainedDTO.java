@@ -1,5 +1,5 @@
 package com.ufrj.bd.steam.adapters.input.dto;
-import com.ufrj.bd.steam.adapters.output.persistence.projections.AchievementObtainedProjection;
+import com.ufrj.bd.steam.adapters.output.persistence.projection.AchievementObtainedProjection;
 
 import lombok.*;
 

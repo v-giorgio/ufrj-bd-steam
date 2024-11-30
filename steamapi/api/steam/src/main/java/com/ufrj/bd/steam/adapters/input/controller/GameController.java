@@ -1,9 +1,11 @@
 package com.ufrj.bd.steam.adapters.input.controller;
 
+import com.ufrj.bd.steam.adapters.input.dto.GameCategoriesDTO;
 import com.ufrj.bd.steam.adapters.input.dto.GameMediaDTO;
 import com.ufrj.bd.steam.adapters.input.dto.GamesListDTO;
 import com.ufrj.bd.steam.application.ports.input.GetAllGamesService;
 import com.ufrj.bd.steam.application.ports.input.GetGameMediaService;
+import com.ufrj.bd.steam.application.ports.input.GetGamesAndCategoriesService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -17,17 +19,25 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/games")
 public class GameController {
 
     private final GetAllGamesService getAllGamesService;
     private final GetGameMediaService getGameMediaService;
+    private final GetGamesAndCategoriesService getGamesAndCategoriesService;
 
     @Autowired
-    public GameController(GetAllGamesService getAllGamesService, GetGameMediaService getGameMediaService) {
+    public GameController(
+            GetAllGamesService getAllGamesService,
+            GetGamesAndCategoriesService getGamesAndCategoriesService,
+            GetGameMediaService getGameMediaService
+    ) {
         this.getAllGamesService = getAllGamesService;
         this.getGameMediaService = getGameMediaService;
+        this.getGamesAndCategoriesService = getGamesAndCategoriesService;
     }
 
     @GetMapping
@@ -43,6 +53,24 @@ public class GameController {
     public ResponseEntity<GamesListDTO> getAll() {
         try {
             return ResponseEntity.ok(getAllGamesService.execute());
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+
+    @GetMapping("/{gameId}/details")
+    @Operation(
+            summary = "Detalhes de um jogo",
+            description = "Obter detalhes do jogo desejado, junto com uma lista de suas categorias"
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Jogo e categorias recuperados com sucesso"),
+            @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
+    })
+    public ResponseEntity<List<GameCategoriesDTO>> getByGameId(@PathVariable Long gameId) {
+        try {
+            return ResponseEntity.ok(getGamesAndCategoriesService.execute(gameId));
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
             return ResponseEntity.internalServerError().build();
