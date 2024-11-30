@@ -25,7 +25,7 @@ public class AchievementEntity implements Serializable {
     private String id;
 
     @Column(name = "percentual_obtencao_usuarios")
-    private BigDecimal obtained_percentage;
+    private BigDecimal obtainedPercentage;
 
     @ManyToOne
     @JoinColumn(name = "fk_Jogo_id", nullable = false)
