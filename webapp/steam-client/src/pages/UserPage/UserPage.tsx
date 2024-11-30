@@ -77,7 +77,7 @@ const UserPage: React.FC = () => {
 
           <div className={styles.onlineStatus}>
             <p className={styles.sectionTitle}>On-line</p>
-            <p>Jogos <b>37</b></p>
+            <a href="/userGames"><p>Jogos <b>37</b></p></a>
             <p>Conquistas <b>37</b></p>
             <p>Amigos <b>37</b></p>
 

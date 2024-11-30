@@ -11,6 +11,9 @@ import Main from './pages/Main/Main';
 import UserList from './pages/UserList/UserList';
 import Game from './pages/Game/Game';
 import UserPage from './pages/UserPage/UserPage';
+import UserGames from './pages/UserGames/UserGames';
+
+
 
 
 const root = ReactDOM.createRoot(
@@ -26,6 +29,8 @@ root.render(
           <Route path="/userList" element={<UserList />} /> 
           <Route path="/games" element={<Game />} /> 
           <Route path="/userPage" element={<UserPage />} /> 
+          <Route path="/userGames" element={<UserGames />} />
+          {/*<Route path="/userPage" element={<UserAchievements />} />*/}
           {/* ADICIONAR ROTAS DAS OUTRAS PÁGINAS AQUI */}
         </Route>
       </Routes>

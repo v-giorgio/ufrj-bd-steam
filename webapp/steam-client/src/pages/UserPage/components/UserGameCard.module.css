@@ -35,15 +35,17 @@ a {
     font-size: 1.1em;
     font-weight: bold;
     margin-bottom: 5px;
+    color: white;
   }
   
   .hoursPlayed {
     margin-bottom: 10px;
+    color: white;
     
   }
   
   .achievement {
-    background-color: #868686;
+    background-color: #454545;
     
     width: 100%;
     display: flex;
@@ -52,6 +54,8 @@ a {
   
   .progress {
     margin-left: 20px;
+    color: white;
+    margin-right: 30px;
   }
 
   .trophyIcon {

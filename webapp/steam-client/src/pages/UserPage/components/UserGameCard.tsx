@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styles from './UserGameCard.module.css';
 import trophy from '../../../assets/trophy.png'
 
