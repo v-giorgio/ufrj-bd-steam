@@ -1,22 +1,34 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './UserListItem.module.css';
 
-import brazilFlag from '../../../../assets/brazil.png'
+import brazilFlag from '../../../../assets/brazil.png';
 
-const UserListItem: React.FC = () => {
+interface UserListItemProps {
+  id: number;
+  nickname: string;
+  originCountry: string;
+  avatar: string;
+}
+
+const UserListItem: React.FC<UserListItemProps> = ({ id, nickname, originCountry, avatar }) => {
+  const navigate = useNavigate();
+
+  const handleUserClick = () => {
+    navigate(`/user/${id}`);
+  };
+
   return (
-    <a href={'/userPage'} >
-      <div className={styles.mainContainer}>
-        <img className={styles.avatar} src="https://avatars.steamstatic.com/9308db1f667688237ceabacc69cde296c28a6533.jpg" />
-        <div className={styles.infoContainer}>
-          <div className={styles.userName}>Juninho666</div>
-          <div className={styles.userCountry}>
-            <img src={brazilFlag} alt="" />
-              BR
-          </div>
+    <div className={styles.mainContainer} onClick={handleUserClick}>
+      <img className={styles.avatar} src={avatar} alt={`${nickname}'s Avatar`} />
+      <div className={styles.infoContainer}>
+        <div className={styles.userName}>{nickname}</div>
+        <div className={styles.userCountry}>
+          <img src={brazilFlag} alt="Country Flag" />
+          {originCountry}
         </div>
       </div>
-    </a>
+    </div>
   );
 };
 

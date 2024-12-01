@@ -1,98 +1,117 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import styles from './UserPage.module.css';
-
 
 import UserGameCard from './components/UserGameCard';
 
+interface User {
+  userName: string;
+  userNickname: string;
+  userProfileUrl: string;
+  userOriginCountry: string;
+  userAvatar: string;
+  userGamesCount: number;
+  userAchievementsCount: number;
+  topCategories: { categoryName: string; timesPlayed: number }[];
+}
+
+interface Game {
+  id: number;
+  gameName: string;
+  playedTime: number;
+  totalAchievementsNumber: number;
+  obtainedAchievementsNumber: number;
+  headerImage: string;
+}
 
 const UserPage: React.FC = () => {
+  const { userId } = useParams<{ userId: string }>();
+  const [user, setUser] = useState<User | null>(null);
+  const [games, setGames] = useState<Game[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const userResponse = await fetch(`http://localhost:8080/api/v1/users/${userId}`);
+        const gamesResponse = await fetch(`http://localhost:8080/api/v1/users/${userId}/games`);
+
+        if (!userResponse.ok || !gamesResponse.ok) {
+          throw new Error('Failed to fetch user data');
+        }
+
+        const userData = await userResponse.json();
+        const gamesData = await gamesResponse.json();
+
+        setUser(userData);
+        setGames(gamesData.games);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'An unexpected error occurred');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUserData();
+  }, [userId]);
+
+  if (loading) {
+    return <p className={styles.loading}>Carregando...</p>;
+  }
+
+  if (error) {
+    return <p className={styles.error}>{error}</p>;
+  }
+
+  if (!user) {
+    return <p className={styles.error}>Dados do usuário não encontrados.</p>;
+  }
+
   return (
     <div className={styles.body}>
       <div className={styles.profileContainer}>
-      <div className={styles.header}>
-        <img
-          className={styles.avatar}
-          src="https://avatars.cloudflare.steamstatic.com/38051e069984c8a56be46d46e5c7808b2376857f_full.jpg"
-          alt="Avatar"
-        />
-        <div className={styles.userInfo}>
-          <p className={styles.username}>john-miller</p>
-          <p className={styles.fullName}>João Vitor</p>
-          <p className={styles.location}>Brasil</p>
-        </div>
-        <div className={styles.badgesSection}>
-          <p className={styles.badgesTitle}>Badges <b>14</b></p>
-          <div className={styles.badgesContainer}>
-            <img
-              className={styles.badgeIcon}
-              src="https://placehold.co/50x50"
-              alt="Badge 1"
-            />
-            <img
-              className={styles.badgeIcon}
-              src="https://placehold.co/50x50"
-              alt="Badge 2"
-            />
-            <img
-              className={styles.badgeIcon}
-              src="https://placehold.co/50x50"
-              alt="Badge 3"
-            />
-            <img
-              className={styles.badgeIcon}
-              src="https://placehold.co/50x50"
-              alt="Badge 4"
-            />
+        <div className={styles.header}>
+          <img className={styles.avatar} src={user.userAvatar} alt={`${user.userNickname}'s Avatar`} />
+          <div className={styles.userInfo}>
+            <p className={styles.username}>{user.userNickname}</p>
+            <p className={styles.fullName}>{user.userName}</p>
+            <p className={styles.location}>{user.userOriginCountry}</p>
+          </div>
+          <div className={styles.badgesSection}>
+            <p className={styles.badgesTitle}>
+              Jogos <b>{user.userGamesCount}</b> | Conquistas <b>{user.userAchievementsCount}</b>
+            </p>
+            <div className={styles.badgesContainer}>
+              {user.topCategories.map((category, index) => (
+                <div key={index} className={styles.badge}>
+                  {category.categoryName} ({category.timesPlayed}x)
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
 
         <div className={styles.content}>
           <div className={styles.recentActivity}>
             <p className={styles.sectionTitle}>Atividade recente</p>
-            {/*<div className={styles.activityCard}>
-              <img
-                className={styles.gameImage}
-                src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/10/header.jpg?t=1729702322"
-                alt="Counter-Strike"
+            {games.map((game) => (
+              <UserGameCard
+                key={game.id}
+                gameName={game.gameName}
+                gameImage={game.headerImage}
+                hoursPlayed={game.playedTime}
+                totalAchievements={game.totalAchievementsNumber}
+                obtainedAchievements={game.obtainedAchievementsNumber}
               />
-              <div className={styles.gameInfo}>
-                <p className={styles.gameTitle}>Counter-Strike</p>
-                <p className={styles.hoursPlayed}>23.1 horas registradas</p>
-                <div className={styles.achievement}>
-                  <p>Progresso em Conquistas: 1 de 15</p>
-                  <img
-                    className={styles.trophyIcon}
-                    src=  {trophy}
-                    alt="Trophy"
-                  />
-                </div>
-              </div>
-            </div>*/}
-            <UserGameCard/>
-            <UserGameCard/>
-            <UserGameCard/>
-            {/* Adicione mais cards se necessário */}
+            ))}
           </div>
 
           <div className={styles.onlineStatus}>
-            <p className={styles.sectionTitle}>On-line</p>
-            <a href="/userGames"><p>Jogos <b>37</b></p></a>
-            <p>Conquistas <b>37</b></p>
-            <p>Amigos <b>37</b></p>
-
-            <div className={styles.friendList}>
-              <div className={styles.friendCard}>
-                <img
-                  className={styles.friendAvatar}
-                  src="https://placehold.co/50x50"
-                  alt="Friend"
-                />
-                <p>Juninho666</p>
-                <p>Brazil</p>
-              </div>
-              {/* Adicione mais amigos conforme necessário */}
-            </div>
+            <p className={styles.sectionTitle}>Sobre</p>
+            <p>País de origem: {user.userOriginCountry}</p>
+            <p>Jogos: <b>{user.userGamesCount}</b></p>
+            <p>Conquistas: <b>{user.userAchievementsCount}</b></p>
           </div>
         </div>
       </div>

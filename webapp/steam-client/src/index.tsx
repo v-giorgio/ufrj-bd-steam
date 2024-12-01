@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 
 
 
-import Layout from './layouts/Layout'; // Import the Layout component
+import Layout from './layouts/Layout';
 import Main from './pages/Main/Main';
 import UserList from './pages/UserList/UserList';
 import Game from './pages/Game/Game';
@@ -26,8 +26,10 @@ root.render(
         {/* O componente de Layout encapsula todas as rotas */}
         <Route path="/" element={<Layout />}>
           <Route index element={<Main />} />
-          <Route path="/userList" element={<UserList />} /> 
+          <Route path="/userList" element={<UserList />} />
+          <Route path="/user/:userId" element={<UserPage />} /> 
           <Route path="/games" element={<Game />} /> 
+          <Route path="/game/:gameId" element={<Game />} />
           <Route path="/userPage" element={<UserPage />} /> 
           <Route path="/userGames" element={<UserGames />} />
           {/*<Route path="/userPage" element={<UserAchievements />} />*/}
