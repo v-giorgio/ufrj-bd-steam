@@ -62,15 +62,27 @@ const Game: React.FC = () => {
   }, [gameId]);
 
   if (loading) {
-    return <p className={styles.loading}>Carregando...</p>;
+    return (
+      <div className={styles.body}>
+        <p className={styles.loading}>Carregando...</p>
+      </div>
+    );
   }
 
   if (error) {
-    return <p className={styles.error}>{error}</p>;
+    return (
+      <div className={styles.body}>
+        <p className={styles.error}>{error}</p>
+      </div>
+    )
   }
 
   if (!details || mediaItems.length === 0) {
-    return <p className={styles.error}>Dados do jogo não encontrados.</p>;
+    return (
+      <div className={styles.body}>
+        <p className={styles.error}>Dados do jogo não encontrados.</p>
+      </div>
+    );
   }
 
   const handleMediaClick = (index: number) => {
@@ -131,14 +143,28 @@ const Game: React.FC = () => {
             <p><b>Descrição:</b> {details.description}</p>
           </div>
         </div>
-
+  
         <div className={styles.requirementsContainer}>
-          <p className={styles.title}>Requisitos do Sistema</p>
-          <div className={styles.requirementsText}>
+          <p className={styles.requirementsTitle}>Requisitos do sistema</p>
+          <hr className={styles.separator} />
+          <div className={styles.requirementsContent}>
             <p><b>Mínimo:</b> {details.minimumSpec}</p>
             <p><b>Recomendado:</b> {details.recommendedSpec}</p>
           </div>
+          <div className={styles.buySection}>
+            <div className={styles.buyText}>
+              <p>Compre <b>{details.name}</b></p>
+            </div>
+            <div className={styles.price}>
+              <p><b>R$ 00,00</b></p>
+            </div>
+            <div className={styles.addToCart}>
+              <p><b>+ Carrinho</b></p>
+            </div>
+          </div>
         </div>
+  
+        
       </div>
     </div>
   );

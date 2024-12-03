@@ -12,6 +12,7 @@ import UserList from './pages/UserList/UserList';
 import Game from './pages/Game/Game';
 import UserPage from './pages/UserPage/UserPage';
 import UserGames from './pages/UserGames/UserGames';
+import AchievementsPage from './pages/Achievments/AchievmentsPage';
 
 
 
@@ -28,10 +29,11 @@ root.render(
           <Route index element={<Main />} />
           <Route path="/userList" element={<UserList />} />
           <Route path="/user/:userId" element={<UserPage />} /> 
-          <Route path="/games" element={<Game />} /> 
+          <Route path="/games" element={<Main />} /> 
           <Route path="/game/:gameId" element={<Game />} />
           <Route path="/userPage" element={<UserPage />} /> 
           <Route path="/userGames" element={<UserGames />} />
+          <Route path="/user/:userId/game/:gameId/achievements" element={<AchievementsPage />} />
           {/*<Route path="/userPage" element={<UserAchievements />} />*/}
           {/* ADICIONAR ROTAS DAS OUTRAS PÁGINAS AQUI */}
         </Route>

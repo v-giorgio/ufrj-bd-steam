@@ -11,8 +11,8 @@ const UserGames: React.FC = () => {
     <body className={styles.body}>
       <div className={styles.mainContainer}>
         <p className={styles.title}>Lista de jogos de john-miller</p>
-        
 
+        
       </div>
     </body>
 );

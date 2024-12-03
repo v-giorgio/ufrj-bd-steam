@@ -57,15 +57,27 @@ const UserPage: React.FC = () => {
   }, [userId]);
 
   if (loading) {
-    return <p className={styles.loading}>Carregando...</p>;
+    return (
+      <div className={styles.body}>
+        <p className={styles.loading}>Carregando...</p>
+      </div>
+    );
   }
 
   if (error) {
-    return <p className={styles.error}>{error}</p>;
+    return (
+      <div className={styles.body}>
+        <p className={styles.error}>{error}</p>
+      </div>
+    )
   }
 
   if (!user) {
-    return <p className={styles.error}>Dados do usuário não encontrados.</p>;
+    return (
+      <div className={styles.body}>
+        <p className={styles.error}>Dados do usuário não encontrados.</p>
+      </div>
+    );
   }
 
   return (
@@ -93,19 +105,22 @@ const UserPage: React.FC = () => {
         </div>
 
         <div className={styles.content}>
-          <div className={styles.recentActivity}>
-            <p className={styles.sectionTitle}>Atividade recente</p>
-            {games.map((game) => (
-              <UserGameCard
-                key={game.id}
-                gameName={game.gameName}
-                gameImage={game.headerImage}
-                hoursPlayed={game.playedTime}
-                totalAchievements={game.totalAchievementsNumber}
-                obtainedAchievements={game.obtainedAchievementsNumber}
-              />
-            ))}
-          </div>
+        <div className={styles.recentActivity}>
+          <p className={styles.sectionTitle}>Atividade recente</p>
+          {games.map((game) => (
+            <UserGameCard
+              key={game.id}
+              userId={Number(userId)}
+              gameId={game.id}
+              gameName={game.gameName}
+              gameImage={game.headerImage}
+              hoursPlayed={game.playedTime}
+              totalAchievements={game.totalAchievementsNumber}
+              obtainedAchievements={game.obtainedAchievementsNumber}
+            />
+          ))}
+        </div>
+
 
           <div className={styles.onlineStatus}>
             <p className={styles.sectionTitle}>Sobre</p>

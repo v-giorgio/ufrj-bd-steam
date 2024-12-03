@@ -37,11 +37,19 @@ const UserList: React.FC = () => {
   }, []);
 
   if (loading) {
-    return <p className={styles.loading}>Carregando...</p>;
+    return (
+      <div className={styles.body}>
+        <p className={styles.loading}>Carregando...</p>
+      </div>
+    );
   }
 
   if (error) {
-    return <p className={styles.error}>{error}</p>;
+    return (
+      <div className={styles.body}>
+        <p className={styles.error}>{error}</p> 
+      </div>
+    )
   }
 
   return (

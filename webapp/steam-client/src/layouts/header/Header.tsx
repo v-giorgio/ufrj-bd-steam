@@ -23,7 +23,7 @@ const Header: React.FC = () => {
     <header className={styles.header}>
       <div className={styles.container}>
         <a href="/" className={styles.logo}>
-          <img src={logo} />
+          <img src={logo} alt="Steam Logo"/>
         </a>
         <nav className={`${styles.nav} ${isMenuOpen ? styles.open : ''}`}>
           <ul className={styles.navList}>
