@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import styles from './UserGameCard.module.css';
 
 interface UserGameCardProps {
-  userId: number;
+  userId: string;
   gameId: number;
   gameName: string;
   gameImage: string;
@@ -24,8 +24,7 @@ const UserGameCard: React.FC<UserGameCardProps> = ({
   const navigate = useNavigate();
 
   const handleClick = () => {
-    const id = userId.toString()
-    navigate(`/user/${id}/game/${gameId}/achievements`);
+    navigate(`/user/${userId}/game/${gameId}/achievements`);
   };
 
   return (

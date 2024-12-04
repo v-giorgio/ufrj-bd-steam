@@ -12,11 +12,6 @@
   margin-bottom: 20px;
 }
 
-.header img {
-  width: 100px;
-  height: auto;
-}
-
 .userInfo {
   flex-grow: 1;
   margin-left: 20px;
@@ -130,8 +125,7 @@
 }
 
 .gameImage {
-  width: 150px;
-  height: auto;
+  width: 500px;
 }
 
 .progressContainer {
@@ -155,3 +149,6 @@
   height: 100%;
 }
 
+.titleStats {
+  font-weight: 300;
+}

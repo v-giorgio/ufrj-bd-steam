@@ -45,7 +45,7 @@ const AchievementsPage: React.FC = () => {
         }
 
         const userData = await userResponse.json();
-        setNickname(userData.userNickname);
+        setNickname(userData.userNickname || userData.userName);
         setAvatar(userData.userAvatar);
 
         const gameResponse = await fetch(`http://localhost:8080/api/v1/games/${gameId}/details`);
@@ -53,9 +53,15 @@ const AchievementsPage: React.FC = () => {
           throw new Error('Failed to fetch game details');
         }
 
+        const mediaResponse: any = await fetch(`http://localhost:8080/api/v1/games/${gameId}/media`);
+        if (!mediaResponse.ok) {
+          throw new Error('Failed to fetch game details');
+        }
+
         const gameData = await gameResponse.json();
+        const mediaData = await mediaResponse.json();
         setGameName(gameData[0].name);
-        setGameImage(gameData[0].headerImageUrl);
+        setGameImage(mediaData.images[0].url);
       } catch (err) {
         setError(err instanceof Error ? err.message : 'An unexpected error occurred');
       } finally {
@@ -104,8 +110,9 @@ const AchievementsPage: React.FC = () => {
       <div className={styles.header}>
         <img className={styles.avatar} src={avatar} alt="Avatar" />
         <div className={styles.info}>
+          <h1 className={styles.titleStats}>Conquistas em <b>{gameName}</b></h1>
           <p className={styles.username}>
-            {nickname} - Estatísticas de <b>{gameName}</b>
+            {nickname}
           </p>
         </div>
         <img className={styles.gameImage} src={gameImage} alt={gameName} />

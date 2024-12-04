@@ -118,7 +118,7 @@ const UserPage: React.FC = () => {
             .map((game) => (
               <UserGameCard
                 key={game.id}
-                userId={Number(userId)}
+                userId={String(userId)}
                 gameId={game.id}
                 gameName={game.gameName}
                 gameImage={game.headerImage}
