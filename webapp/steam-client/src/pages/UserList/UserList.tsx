@@ -24,7 +24,6 @@ const UserList: React.FC = () => {
           throw new Error('Failed to fetch users');
         }
         const data = await response.json();
-        console.log(data)
         setUsers(data.users);
       } catch (err) {
         setError(err instanceof Error ? err.message : 'An unexpected error occurred');
@@ -60,7 +59,7 @@ const UserList: React.FC = () => {
           <UserListItem
             key={user.id}
             id={user.id}
-            nickname={user.nickname ? user.nickname : user.name}
+            nickname={user.nickname || user.name}
             originCountry={user.originCountry}
             avatar={user.avatar}
           />

@@ -111,25 +111,30 @@ const UserPage: React.FC = () => {
 
         <div className={styles.content}>
         <div className={styles.recentActivity}>
-          <p className={styles.sectionTitle}>Detalhes de jogos</p>
-          {games.map((game) => (
-            <UserGameCard
-              key={game.id}
-              userId={Number(userId)}
-              gameId={game.id}
-              gameName={game.gameName}
-              gameImage={game.headerImage}
-              hoursPlayed={game.playedTime}
-              totalAchievements={game.totalAchievementsNumber}
-              obtainedAchievements={game.obtainedAchievementsNumber}
-            />
-          ))}
+          <p className={styles.sectionTitle}>Mais Jogados</p>
+          {games
+            .sort((a, b) => b.playedTime - a.playedTime) 
+            .slice(0, 3) 
+            .map((game) => (
+              <UserGameCard
+                key={game.id}
+                userId={Number(userId)}
+                gameId={game.id}
+                gameName={game.gameName}
+                gameImage={game.headerImage}
+                hoursPlayed={((game.playedTime / 1000).toLocaleString('pt-BR', { minimumFractionDigits: 3, maximumFractionDigits: 3 }))}
+                totalAchievements={game.totalAchievementsNumber}
+                obtainedAchievements={game.obtainedAchievementsNumber}
+              />
+            ))}
         </div>
 
 
           <div className={styles.onlineStatus}>
             <h1 className={styles.sectionTitle}>Off-line</h1>
-            <h3 className={styles.obtained}>Jogos <span className={styles.numberObtained}>{user.userGamesCount}</span></h3>
+            <a href={`/user/${userId}/games`} className={styles.link}>
+              <h3 className={styles.obtainedGames}>Jogos <span className={styles.numberObtained}>{user.userGamesCount}</span></h3>
+            </a>{' '}
             <h3 className={styles.obtained}>Conquistas <span className={styles.numberObtained}>{user.userAchievementsCount}</span></h3>
           </div>
         </div>

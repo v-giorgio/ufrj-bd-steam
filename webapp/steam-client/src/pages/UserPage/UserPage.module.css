@@ -93,9 +93,16 @@
     padding: 10px;
   }
 
-  .obtained {
+  .obtained,
+  .obtainedGames {
+    margin-left: 16px;
     font-size: 24px;
     font-weight: 600;
+  }
+
+  .obtainedGames:hover {
+    transform: scale(1.1);
+    transition: 0.3s;
   }
 
   .numberObtained {
