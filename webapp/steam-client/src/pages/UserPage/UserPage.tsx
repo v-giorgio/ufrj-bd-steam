@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import styles from './UserPage.module.css';
+import brazilFlag from '../../assets/brazil.png';
 
 import UserGameCard from './components/UserGameCard';
 
@@ -86,14 +87,18 @@ const UserPage: React.FC = () => {
         <div className={styles.header}>
           <img className={styles.avatar} src={user.userAvatar} alt={`${user.userNickname}'s Avatar`} />
           <div className={styles.userInfo}>
-            <p className={styles.username}>{user.userNickname}</p>
-            <p className={styles.fullName}>{user.userName}</p>
-            <p className={styles.location}>{user.userOriginCountry}</p>
+            <span className={styles.username}>{user.userNickname}</span><br />
+            <span className={styles.fullName}>{user.userName}</span>
+            <div className={styles.location}>
+            {user.userOriginCountry ? 
+              <img src={brazilFlag} alt="Brazil" width={20} />
+              : null
+            }
+              {user.userOriginCountry}
+            </div>
           </div>
           <div className={styles.badgesSection}>
-            <p className={styles.badgesTitle}>
-              Jogos <b>{user.userGamesCount}</b> | Conquistas <b>{user.userAchievementsCount}</b>
-            </p>
+            <h3 className={styles.sectionTitle}>Categorias favoritas</h3>
             <div className={styles.badgesContainer}>
               {user.topCategories.map((category, index) => (
                 <div key={index} className={styles.badge}>
@@ -106,7 +111,7 @@ const UserPage: React.FC = () => {
 
         <div className={styles.content}>
         <div className={styles.recentActivity}>
-          <p className={styles.sectionTitle}>Atividade recente</p>
+          <p className={styles.sectionTitle}>Detalhes de jogos</p>
           {games.map((game) => (
             <UserGameCard
               key={game.id}
@@ -123,10 +128,9 @@ const UserPage: React.FC = () => {
 
 
           <div className={styles.onlineStatus}>
-            <p className={styles.sectionTitle}>Sobre</p>
-            <p>País de origem: {user.userOriginCountry}</p>
-            <p>Jogos: <b>{user.userGamesCount}</b></p>
-            <p>Conquistas: <b>{user.userAchievementsCount}</b></p>
+            <h1 className={styles.sectionTitle}>Off-line</h1>
+            <h3 className={styles.obtained}>Jogos <span className={styles.numberObtained}>{user.userGamesCount}</span></h3>
+            <h3 className={styles.obtained}>Conquistas <span className={styles.numberObtained}>{user.userAchievementsCount}</span></h3>
           </div>
         </div>
       </div>

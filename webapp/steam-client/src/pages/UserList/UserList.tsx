@@ -60,7 +60,7 @@ const UserList: React.FC = () => {
           <UserListItem
             key={user.id}
             id={user.id}
-            nickname={user.nickname}
+            nickname={user.nickname ? user.nickname : user.name}
             originCountry={user.originCountry}
             avatar={user.avatar}
           />

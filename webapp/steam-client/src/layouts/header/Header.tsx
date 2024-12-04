@@ -9,7 +9,7 @@ type NavLink = {
 
 const navLinks: NavLink[] = [
   { label: 'Jogos', href: '/games' },
-  { label: 'Usuarios', href: '/userList' },
+  { label: 'Usuários', href: '/userList' },
 ];
 
 const Header: React.FC = () => {

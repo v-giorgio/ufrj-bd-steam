@@ -24,7 +24,8 @@ const UserGameCard: React.FC<UserGameCardProps> = ({
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/user/${userId}/game/${gameId}/achievements`);
+    const id = userId.toString()
+    navigate(`/user/${id}/game/${gameId}/achievements`);
   };
 
   return (

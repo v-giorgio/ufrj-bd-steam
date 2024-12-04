@@ -15,7 +15,7 @@ public class UsersListDTO {
     @Data
     @AllArgsConstructor
     public static class UserDTO {
-        private Long id;
+        private String id;
         private String nickname;
         private String name;
         private String profileUrl;
@@ -26,7 +26,7 @@ public class UsersListDTO {
     public static UsersListDTO fromDomain(List<User> users) {
         List<UserDTO> userDTOs = users.stream()
                 .map(u -> new UserDTO(
-                        u.getId(),
+                        u.getId().toString(),
                         u.getNickname(),
                         u.getName(),
                         u.getProfileUrl(),

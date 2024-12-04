@@ -25,7 +25,7 @@ public interface GameRepository extends JpaRepository<GameEntity, Long> {
             " FROM UserAchievementEntity UC " +
             " WHERE UC.user.id = JU.user.id " +
             "   AND UC.achievement.game.id = J.id) AS obtainedAchievementsNumber, " +
-            "(SELECT I.url " +
+            "(SELECT MAX(I.url) " +
             " FROM ImageEntity I " +
             " WHERE I.game.id = J.id " +
             "   AND I.isHeader = TRUE) AS headerImage " +

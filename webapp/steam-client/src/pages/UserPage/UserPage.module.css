@@ -26,9 +26,11 @@
   }
   
   .avatar {
-    width: 100px;
-    height: 100px;
-    margin-right: 20px;
+    width: 120px;
+    height: 120px;
+    margin-right: 40px;
+    border: 10px inset rgb(0, 0, 22);
+    border-radius: 10px;
   }
   
   .userInfo {
@@ -36,13 +38,16 @@
   }
   
   .username {
-    font-size: 1.5em;
-    font-weight: bold;
+    font-size: 2em;
   }
   
-  .fullName,
   .location {
-    margin: 5px 0;
+    display: flex;
+    margin: 30px 0;
+  }
+
+  .location img {
+    padding-right: 10px;
   }
   
   .editButton {
@@ -73,8 +78,11 @@
   }
   
   .sectionTitle {
-    font-size: 1.2em;
-    margin-bottom: 10px;
+    font-size: 2rem;
+    font-weight: 300;
+    color: rgb(160, 160, 160);
+    letter-spacing: 0.1rem;
+    margin-bottom: 20px;
   }
   
   
@@ -83,6 +91,17 @@
     background-color: #3B4252;
     border-radius: 5px;
     padding: 10px;
+  }
+
+  .obtained {
+    font-size: 24px;
+    font-weight: 600;
+  }
+
+  .numberObtained {
+    font-size: 32px;
+    font-weight: 300;
+    padding-left: 15px;
   }
   
   .friendList {
@@ -116,6 +135,10 @@
   
   .badgesContainer {
     display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-right: 0px;
+    padding-right: 0px;
     gap: 10px;
   }
   
@@ -125,5 +148,10 @@
     border-radius: 100%;
     background-color: #3B4252;
     object-fit: cover;
+  }
+
+  .badge {
+    font-size: 18px;
+    font-weight: 300;
   }
   
