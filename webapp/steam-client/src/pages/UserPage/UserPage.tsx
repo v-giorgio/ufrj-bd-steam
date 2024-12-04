@@ -92,7 +92,10 @@ const UserPage: React.FC = () => {
           </div>
           <div className={styles.badgesSection}>
             <p className={styles.badgesTitle}>
-              Jogos <b>{user.userGamesCount}</b> | Conquistas <b>{user.userAchievementsCount}</b>
+              <a href={`/user/${userId}/games`} className={styles.link}>
+                Jogos <b>{user.userGamesCount}</b>
+              </a>{' '}
+              | Conquistas <b>{user.userAchievementsCount}</b>
             </p>
             <div className={styles.badgesContainer}>
               {user.topCategories.map((category, index) => (
@@ -106,19 +109,22 @@ const UserPage: React.FC = () => {
 
         <div className={styles.content}>
         <div className={styles.recentActivity}>
-          <p className={styles.sectionTitle}>Atividade recente</p>
-          {games.map((game) => (
-            <UserGameCard
-              key={game.id}
-              userId={Number(userId)}
-              gameId={game.id}
-              gameName={game.gameName}
-              gameImage={game.headerImage}
-              hoursPlayed={game.playedTime}
-              totalAchievements={game.totalAchievementsNumber}
-              obtainedAchievements={game.obtainedAchievementsNumber}
-            />
-          ))}
+          <p className={styles.sectionTitle}>Mais Jogados</p>
+          {games
+            .sort((a, b) => b.playedTime - a.playedTime) 
+            .slice(0, 3) 
+            .map((game) => (
+              <UserGameCard
+                key={game.id}
+                userId={Number(userId)}
+                gameId={game.id}
+                gameName={game.gameName}
+                gameImage={game.headerImage}
+                hoursPlayed={((game.playedTime / 1000).toLocaleString('pt-BR', { minimumFractionDigits: 3, maximumFractionDigits: 3 }))}
+                totalAchievements={game.totalAchievementsNumber}
+                obtainedAchievements={game.obtainedAchievementsNumber}
+              />
+            ))}
         </div>
 
 

@@ -13,6 +13,7 @@ import Game from './pages/Game/Game';
 import UserPage from './pages/UserPage/UserPage';
 import UserGames from './pages/UserGames/UserGames';
 import AchievementsPage from './pages/Achievments/AchievmentsPage';
+import UserGamesPage from './pages/UserGamesPage/UserGamesPage';
 
 
 
@@ -31,6 +32,7 @@ root.render(
           <Route path="/user/:userId" element={<UserPage />} /> 
           <Route path="/games" element={<Main />} /> 
           <Route path="/game/:gameId" element={<Game />} />
+          <Route path="/user/:userId/games" element={<UserGamesPage />} />
           <Route path="/userPage" element={<UserPage />} /> 
           <Route path="/userGames" element={<UserGames />} />
           <Route path="/user/:userId/game/:gameId/achievements" element={<AchievementsPage />} />

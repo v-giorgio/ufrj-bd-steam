@@ -1,0 +1,29 @@
+.body {
+    background-color: #212838;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+  }
+  
+  .mainContainer {
+    background-color: #2D374C;
+    width: 80%;
+    max-width: 1200px;
+    padding: 30px;
+    color: white;
+  }
+  
+  .title {
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+  
+  .gamesGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+  

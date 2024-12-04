@@ -46,11 +46,24 @@ a {
   
   .achievement {
     background-color: #454545;
-    
     width: 100%;
     display: flex;
-    align-items: center;
+    flex-direction: column;
   }
+  
+  .progressBar {
+    width: 100%;
+    height: 8px;
+    background-color: #333333;
+    overflow: hidden;
+  }
+  
+  .progressFill {
+    height: 100%;
+    background-color: #66c0f4;
+    transition: width 0.3s ease-in-out;
+  }
+  
   
   .progress {
     margin-left: 20px;
