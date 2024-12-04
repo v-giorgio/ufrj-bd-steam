@@ -148,8 +148,8 @@ const Game: React.FC = () => {
           <p className={styles.requirementsTitle}>Requisitos do sistema</p>
           <hr className={styles.separator} />
           <div className={styles.requirementsContent}>
-            <p><b>Mínimo:</b> {details.minimumSpec}</p>
-            <p><b>Recomendado:</b> {details.recommendedSpec}</p>
+            <span dangerouslySetInnerHTML={{__html: details.minimumSpec}} />
+            <span dangerouslySetInnerHTML={{__html: details.recommendedSpec}} />
           </div>
           <div className={styles.buySection}>
             <div className={styles.buyText}>

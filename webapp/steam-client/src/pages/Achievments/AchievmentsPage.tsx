@@ -108,14 +108,14 @@ const AchievementsPage: React.FC = () => {
   return (
     <div className={styles.body}>
       <div className={styles.header}>
-        <img className={styles.avatar} src={avatar} alt="Avatar" />
+        <img className={styles.avatar} src={avatar} alt="Avatar" onClick={() => navigate(`/user/${userId}`)} />
         <div className={styles.info}>
           <h1 className={styles.titleStats}>Conquistas em <b>{gameName}</b></h1>
           <p className={styles.username}>
             {nickname}
           </p>
         </div>
-        <img className={styles.gameImage} src={gameImage} alt={gameName} />
+        <img className={styles.gameImage} src={gameImage} alt={gameName} onClick={() => navigate(`/game/${gameId}`)} />
       </div>
       <div className={styles.progressContainer}>
         <p>{progress} conquistas</p>

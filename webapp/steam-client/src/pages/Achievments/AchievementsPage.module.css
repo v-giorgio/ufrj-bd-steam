@@ -114,6 +114,12 @@
   height: 100px;
 }
 
+.avatar:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+  transition: 0.4s;
+}
+
 .info {
   flex: 1;
   margin: 0 20px;
@@ -126,6 +132,12 @@
 
 .gameImage {
   width: 500px;
+}
+
+.gameImage:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+  transition: 0.4s;
 }
 
 .progressContainer {

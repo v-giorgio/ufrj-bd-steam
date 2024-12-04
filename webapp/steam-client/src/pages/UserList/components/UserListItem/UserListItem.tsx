@@ -24,7 +24,7 @@ const UserListItem: React.FC<UserListItemProps> = ({ id, nickname, originCountry
       <div className={styles.infoContainer}>
         <div className={styles.userName}>{nickname}</div>
         <div className={styles.userCountry}>
-          <img src={brazilFlag} alt="Country Flag" />
+          {originCountry ? <img src={brazilFlag} alt="Country Flag" /> : null}
           {originCountry}
         </div>
       </div>

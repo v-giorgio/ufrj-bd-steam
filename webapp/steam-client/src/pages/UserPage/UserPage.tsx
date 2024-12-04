@@ -102,7 +102,7 @@ const UserPage: React.FC = () => {
             <div className={styles.badgesContainer}>
               {user.topCategories.map((category, index) => (
                 <div key={index} className={styles.badge}>
-                  {category.categoryName} ({category.timesPlayed}x)
+                  {category.categoryName} <span className={styles.numberCategory}>({category.timesPlayed}x)</span>
                 </div>
               ))}
             </div>

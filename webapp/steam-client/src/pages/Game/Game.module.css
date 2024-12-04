@@ -10,7 +10,6 @@
 .mainContainer {
     background-color: #2D374C;
     width: 80%;
-    max-height: 1180px;
     margin-top: 100px;
     margin-bottom: 80px;
     display: flex;
@@ -27,9 +26,7 @@
 
 
 .firstRow {
-    height:1500px;
     display: flex;
-    
 }
 
 .previewContainer {
@@ -38,6 +35,20 @@
     white-space: nowrap;
     overflow: hidden;
     margin: 10px;
+}
+
+.previewContainer:hover {
+    cursor: zoom-in
+}
+
+.previewContainer img {
+    transition: -webkit-transform 0.25s ease;
+    transition: transform 0.25s ease;
+}
+
+.previewContainer img:active {
+    -webkit-transform: scale(2);
+    transform: scale(2);
 }
 
 .currentMedia {
