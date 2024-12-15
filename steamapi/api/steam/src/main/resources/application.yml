@@ -3,8 +3,8 @@ spring:
     name: steam
   datasource:
     url: jdbc:mysql://localhost:3306/steam
-    username: admin
-    password: # adicionar senha aqui
+    username: steam_user
+    password: 321 # adicionar senha aqui
     driver-class-name: com.mysql.cj.jdbc.Driver
     initialization-mode: always
   jpa:
